@@ -1,0 +1,84 @@
+Client ID
+203_2hosJUozrOVxXNWyvAh8ftmp6Ug3vjmTP1SPBg3ytinkoiF4Te
+
+Secret
+qjwzral8UmmI2C5ETZ5E4o2Ekxe0PGM3UPQqYcqWPQjWpD5wnv
+
+
+access_token => qvhSLbgAAbtY9vIHz9Dtc_1KIB9EJw7xoUiQgQ2r5Ao
+expires_in => 2628000
+refresh_token => DLXgIJbvuOOiQBHeY4lnj7hyk84u_onMSK2bx9QbRL4
+token_type => bearer
+
+https://api.spotware.com/webserv/connect/api/tradingaccounts?access_token=qvhSLbgAAbtY9vIHz9Dtc_1KIB9EJw7xoUiQgQ2r5Ao
+
+
+
+
+
+https://api.spotware.com/webserv/connect/api/profile?access_token=EpnUPzeilFN_jvS-5-7uY9O6bpymsMnaiLJKqYBMgNo
+
+https://api.spotware.com/webserv/connect/api/tradingaccounts?access_token=EpnUPzeilFN_jvS-5-7uY9O6bpymsMnaiLJKqYBMgNo
+
+// palayground
+https://connect.spotware.com/apps/203/playground
+
+
+1) Below an example of how to get positions
+https://sandbox-api.spotware.com/connect/tradingaccounts/89214/positions?oauth_token=test002_access_token
+
+2) Active accounts
+https://api.spotware.com/connect/tradingaccounts/account_id/positions?oauth_token=token
+
+3) Oauth token from spotware
+https://api.spotware.com/connect/profile?oauth_token=EpnUPzeilFN_jvS-5-7uY9O6bpymsMnaiLJKqYBMgNo
+
+
+GET auth code
+https://connect.spotware.com/apps/auth?client_id=203_2hosJUozrOVxXNWyvAh8ftmp6Ug3vjmTP1SPBg3ytinkoiF4Te&redirect_uri=http://fxstar.eu/forex/&scope=accounts
+https://connect.spotware.com/apps/auth?client_id=203_2hosJUozrOVxXNWyvAh8ftmp6Ug3vjmTP1SPBg3ytinkoiF4Te&redirect_uri=http://fxstar.eu/forex/&scope=accounts
+https://api.spotware.com
+
+
+1] https://connect.spotware.com/docs/api-reference/going-live
+2] https://connect.spotware.com/docs/api-reference/accounts-api
+3] https://connect.spotware.com/docs/api-reference/oauth-services-description
+4] https://connect.spotware.com/docs/available-resources/playground
+
+LOGIN LINK (cTID !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
+https://spotware.id.ctrader.com/
+ADD USER ACCOUNT (https://spotware.id.ctrader.com/)
+https://connect.spotware.com/apps/auth?client_id=203_2hosJUozrOVxXNWyvAh8ftmp6Ug3vjmTP1SPBg3ytinkoiF4Te&redirect_uri=https://fxstar.eu/forex/connect.php&scope=accounts
+RETURN 
+https://fxstar.eu/forex/connect.php?code=67865df25f7ee9a38e69cdee9db276d5b1dec64f93ff545f8f5b9211ab59112020bf0cbc0b8270efa3035a
+GET USER ACESS TOKEN 
+https://connect.spotware.com/apps/token?grant_type=authorization_code&code=67865df25f7ee9a38e69cdee9db276d5b1dec64f93ff545f8f5b9211ab59112020bf0cbc0b8270efa3035a&redirect_uri=https://fxstar.eu/forex/connect.php&client_id=203_2hosJUozrOVxXNWyvAh8ftmp6Ug3vjmTP1SPBg3ytinkoiF4Te&client_secret=qjwzral8UmmI2C5ETZ5E4o2Ekxe0PGM3UPQqYcqWPQjWpD5wnv
+RETURN
+{"accessToken":"u_9jgKZevYqkg_DDYT5EkJA55Rnu29g7YdLotTNWTSM","tokenType":"bearer","expiresIn":2628000,"refreshToken":"Lcuj1vAzTK7uv8pPmJ8m4PP8OG6jNVVoFwHymT1mFaQ","errorCode":null,"access_token":"u_9jgKZevYqkg_DDYT5EkJA55Rnu29g7YdLotTNWTSM","refresh_token":"Lcuj1vAzTK7uv8pPmJ8m4PP8OG6jNVVoFwHymT1mFaQ","expires_in":2628000}
+REFRESH ACCESS TOKEN
+https://sandbox-connect.spotware.com/apps/token?
+grant_type=refresh_token&
+refresh_token={your Refresh Token previously received with Access Token}&
+redirect_uri={your Redirection URI}&
+client_id={your Partner's Public Client ID}&
+client_secret={your Partner's Client Secret}
+
+USER ACCESS TOKEN USE (get user accounts)
+https://api.spotware.com/connect/tradingaccounts?access_token=u_9jgKZevYqkg_DDYT5EkJA55Rnu29g7YdLotTNWTSM
+get position from account
+https://api.spotware.com/connect/tradingaccounts/428599/positions?access_token=u_9jgKZevYqkg_DDYT5EkJA55Rnu29g7YdLotTNWTSM
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+GET ACCOUNTS
+https://api.spotware.com/connect/tradingaccounts?access_token=qvhSLbgAAbtY9vIHz9Dtc_1KIB9EJw7xoUiQgQ2r5Ao
+https://api.spotware.com/connect/tradingaccounts/424860/positions?access_token=qvhSLbgAAbtY9vIHz9Dtc_1KIB9EJw7xoUiQgQ2r5Ao
+
+CREATE DEMO
+https://api.spotware.com/connect/tradingaccounts/createdemo
+
+ACCOUNTS
+{"data":[{"accountId":424862,"accountNumber":3157245,"live":false,"brokerName":"Spotware","brokerTitle":"Spotware","brokerCode":414,"depositCurrency":"USD","traderRegistrationTimestamp":1486632491403,"traderAccountType":"HEDGED","leverage":500,"leverageInCents":50000,"balance":100000000,"deleted":false,"accountStatus":"ACTIVE","swapFree":false},
+{"accountId":424860,"accountNumber":3157244,"live":false,"brokerName":"Spotware","brokerTitle":"Spotware","brokerCode":414,"depositCurrency":"EUR","traderRegistrationTimestamp":1486632406062,"traderAccountType":"HEDGED","leverage":100,"leverageInCents":10000,"balance":100000,"deleted":false,"accountStatus":"ACTIVE","swapFree":false}]}
