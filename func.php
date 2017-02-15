@@ -47,4 +47,12 @@ function parseHeaders( $headers )
 // how to use
 echo $res = file_get_contents($cGetUserAccessToken);	
 print_r(parseHeaders($http_response_header));
-  
+
+// or
+$res = file_get_contents($cGetUserAccessToken);	
+$rescode = parseHeaders($http_response_header)['reponse_code'];
+if ($rescode == 200) {
+      echo $res;
+}else{
+      echo "['Spotware_page_error']";
+}
