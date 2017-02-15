@@ -14,7 +14,8 @@ function curl($url){
 	    case 200:  # OK
 	      break;
 	    default:
-	      return $out = '['.$http_code.']';
+	      //return $out = '['.$http_code.']';
+              return '[ERROR]';
 	  }
 	}
 	curl_close($ch);
