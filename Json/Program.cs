@@ -1,4 +1,3 @@
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,29 +21,19 @@ namespace ConnectApi
             cAccounts = "";
             using (var wc = new WebClient())
                 cAccounts = wc.DownloadString(urlAccounts);
-             Console.Write(cAccounts);
+             Console.WriteLine(cAccounts);
 
             cTraderAccounts result = JsonConvert.DeserializeObject<cTraderAccounts>(cAccounts);
+            // get first account id
             var aId = result.data[0].accountId;
-            Console.Write(aId);
+            Console.WriteLine(aId);
 
-            /*
-            JsonSerializer serializer = new JsonSerializer();
-            serializer.Converters.Add(new JavaScriptDateTimeConverter());
-            serializer.NullValueHandling = NullValueHandling.Ignore;
-            var A = new cTraderAccount();
-            using (StreamWriter sw = new StreamWriter(cAccounts))
-            using(JsonWriter writer = new JsonTextWriter(sw))
+            // show all accounts data
+            foreach (cTraderAccount acc in result.data)
             {
-              serializer.Serialize(writer, A);
-               // {"ExpiryDate":new Date(1230375600000),"Price":0}
+                Console.WriteLine("Account " + acc.accountId + " Broker " + acc.brokerName);
             }
-
-            JObject u = JObject.Parse(cAccounts);
-           cTraderAccounts  account = JsonConvert.DeserializeObject<cTraderAccounts>(cAccounts);
-            Console.Write(account);
-            */
-
+            
             Console.ReadKey();
         }
     }
