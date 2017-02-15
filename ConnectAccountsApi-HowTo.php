@@ -2,6 +2,11 @@
 // Spotware Connect API Accounts
 // 1] https://connect.spotware.com/docs/available-resources/playground
 // 2] https://connect.spotware.com/docs/api-reference/accounts-api
+
+### CREATE YOUR APPLICATION FIRST get clientID and SecretId
+### https://connect.spotware.com    
+### https://connect.spotware.com/apps
+
 // User must login (authhorize) first on this page with his cTID with connected cTrader accounts (Signin in cTrader with cTID): 
 $cLoginFirst = 'https://connect.spotware.com/auth';
 // after login open this link in new browser tab and click allow button (get user access token)
