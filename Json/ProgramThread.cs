@@ -24,35 +24,57 @@ namespace ConnectApi
             string urlAccounts = "https://api.spotware.com/connect/tradingaccounts?access_token="+accessToken;
             string cAccounts = "";
 
-            while (true) {
+            try
+            {
                 using (var wc = new WebClient())
                 {
+                    // Get account from accessToken
                     cAccounts = wc.DownloadString(urlAccounts);
                     // Console.WriteLine(cAccounts);
                 }
 
-                // Deserialize to object class cTraderAccounts
-                cTraderAccounts result = JsonConvert.DeserializeObject<cTraderAccounts>(cAccounts);
-                // get first account id
-                // var aId = result.data[0].accountId;
-                // Console.WriteLine(aId);
-
-                // show all accounts data
-                foreach (cTraderAccount acc in result.data)
+                while (true)
                 {
-                    Thread thread = new Thread(()=>
-                    {
-                        string txt = "======================================================= \n" + "Account " + acc.accountId + " Broker " + acc.brokerName;
-                        WebClient pos = new WebClient();
-                        string cAccountPositions = pos.DownloadString("https://api.spotware.com/connect/tradingaccounts/" + acc.accountId + "/positions?access_token=" + accessToken);
-                        Console.WriteLine(txt + "\nPositions from account " + acc.accountId + " >>> " + cAccountPositions);
-                    });
-                    thread.Start();
-                }
 
-                Thread.Sleep(1);
-                // Console.ReadKey();
+                    // Deserialize to object class cTraderAccounts
+                    cTraderAccounts result = JsonConvert.DeserializeObject<cTraderAccounts>(cAccounts);
+                    // get first account id 
+                    // var aId = result.data[0].accountId;
+                    // Console.WriteLine(aId);
+
+                    // show all accounts data
+                    foreach (cTraderAccount acc in result.data)
+                    {
+                        Thread thread = new Thread(() =>
+                        {
+                            string txt = "======================================================= \n" + "Account " + acc.accountId + " Broker " + acc.brokerName;
+                            WebClient pos = new WebClient();
+                            string cAccountPositions = pos.DownloadString("https://api.spotware.com/connect/tradingaccounts/" + acc.accountId + "/positions?access_token=" + accessToken);
+                            Console.WriteLine(txt + "\nPositions from account " + acc.accountId + " >>> " + cAccountPositions);
+                            // Save to file
+                            string dir = Directory.GetCurrentDirectory();
+                            System.IO.StreamWriter file = new System.IO.StreamWriter(dir + @"\positions.txt", true);
+                            file.WriteLine(DateTime.UtcNow.ToString() + " " + txt + "\nPositions from account " + acc.accountId + " >>> " + cAccountPositions);
+                            file.Close();
+                        });
+                        thread.Start();
+                    }
+
+                    Thread.Sleep(2000);
+                    // Console.ReadKey();
+                }
             }
-        }              
+            catch (Exception e)
+            {
+                Console.WriteLine("Spotwer error : " + e.ToString());
+                // Write the string to a file.
+                string dir = Directory.GetCurrentDirectory();                
+                System.IO.StreamWriter file = new System.IO.StreamWriter(dir + @"\error.txt", true);
+                file.WriteLine(DateTime.UtcNow.ToString() + " " + e.ToString());
+                file.Close();
+            }
+        }
+               
+
     }
 }
