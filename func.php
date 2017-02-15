@@ -44,6 +44,14 @@ function parseHeaders( $headers )
     return $head;
 }
 
+// Spotware Connect API 
+// User must login first on this page: 
+$cLoginFirst = 'https://connect.spotware.com/auth';
+// after login open this link (get user access token)
+$cRedirectUserTo = 'https://connect.spotware.com/apps/auth?client_id=203_2hosJUozrOVxXNWyvAh8ftmp6Ug3vjmTP1SPBg3ytinkoiF4Te&redirect_uri=https://fxstar.eu/forex/connect.php&scope=accounts';
+// after redirect to this !!! script !!! you can get access code in json format
+$cGetUserAccessToken = 'https://connect.spotware.com/apps/token?grant_type=authorization_code&code='.$cReceive.'&redirect_uri='.$cUri.'&client_id='.$cID.'&client_secret='.$cSecret;
+
 // how to use
 echo $res = file_get_contents($cGetUserAccessToken);	
 print_r(parseHeaders($http_response_header));
