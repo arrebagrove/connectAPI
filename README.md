@@ -5,4 +5,4 @@ cTrader connect API howto (Accounts API)
 connect user eedirect Uri file.
 
 ## Folder Json
-C#connec Api Accounts Api application (Save positions and deals to database)
+C# connec Api Accounts Api application (Save positions and deals to database)
