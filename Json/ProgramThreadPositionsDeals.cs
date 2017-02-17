@@ -16,9 +16,7 @@ namespace ConnectApi
     class Program
     {
         // Your application access token to ConnectApi, AccountsApi Spotware
-        // public static string accessToken = "qvhSLbgAAbtY9vIHz9Dtc_1KIB9EJw7xoUiQgQ2r5Ao";
-        // public static string accessToken = "6Bbnlj6Q3eaGpbbpVhlmJuENlzVPMBVLK_1Cm3OULa0";
-        public static string accessToken = "7tYSTpEcZxmG5eD7vC1Tu98zM3AjW3TEctnDFciwtPc";
+        public static string accessToken = "";
 
         static void Main(string[] args)
         {
