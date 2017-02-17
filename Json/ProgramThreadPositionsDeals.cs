@@ -24,19 +24,23 @@ namespace ConnectApi
             if (!BreakermindForex.CreateDatabase()) return;
             while (true)
             {
-                Console.BackgroundColor = ConsoleColor.White;
-                Console.ForegroundColor = ConsoleColor.Green;
-                BreakermindForex.Print("\r\n Now Positions Show");
-                // get open positions
-                BreakermindForex.GetPositions(accessToken);
+                // Show timestamp
+                Console.BackgroundColor = ConsoleColor.Green;
+                Console.ForegroundColor = ConsoleColor.Black;
+                BreakermindForex.Print("\r\nBreakermind.com All rights reserved.\n");
+                BreakermindForex.Print("Start time: " + DateTime.UtcNow.ToString() + " [" + BreakermindForex.Timestamp().ToString() + "]" + "\r\n");
                 Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.White;
 
-                Console.BackgroundColor = ConsoleColor.Black;
-                Console.ForegroundColor = ConsoleColor.Red;
-                BreakermindForex.Print("\r\n Now Deals Show \r\n");
+                // get open positions
+                BreakermindForex.Print("\r\nNow Positions Show \r\n");                
+                BreakermindForex.GetPositions(accessToken);
+                                
                 // Get deals
+                BreakermindForex.Print("\r\nNow Deals Show \r\n");                
                 BreakermindForex.GetDeals(accessToken);
-                Console.ResetColor();
+
+                Thread.Sleep(2000);
             }
         }
     }
