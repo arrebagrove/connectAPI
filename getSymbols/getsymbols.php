@@ -14,6 +14,8 @@ for ($i=0; $i < 28; $i++) {
 	addSymbols($j);
 	//file_put_contents('loop.txt', time()." ".$j."\r\n", FILE_APPEND | LOCK_EX);
 	file_put_contents(getenv('OPENSHIFT_PHP_LOG_DIR').'loop.txt', time()." ".$j."\r\n");	
+	// sleep 2 seconds -> 28 x 2 ~ 1min (cron runs minutely)
+	// sleep(2);
 	usleep(2002);	
 	echo $i;
 }
