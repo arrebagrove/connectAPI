@@ -52,7 +52,7 @@ function addSymbols($json){
 			$y = date('Y');
 			$time = time();
 			// symbol
-			$sym = $v['symbolName'];
+			$sym = str_replace("#", "!", $v['symbolName']);
 			$dig = $v['digits'];
 			$pip = $v['pipPosition'];
 			$base = $v['baseAsset'];
