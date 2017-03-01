@@ -51,6 +51,7 @@ function getSymbol($search = "GBP", $save = false){
 			$exp = explode(',', $search);			
 			$or = "";
 			foreach ($exp as $v) {
+				$v = '%'.$v.'%';
 				$or .= " OR hour=$h AND day = $d AND month = $month AND year = $y AND symbolName LIKE '$v'";
 			}
 			// mysql
