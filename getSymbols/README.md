@@ -7,3 +7,6 @@ get all symbols with text from our database.
 
 ### getsymbolschart.php?s=GBPJPY&array=0 or getsymbolschart.php?s=GBPJPY&array=1
 get symbol chart data (json or array format)
+
+### getsymbolsall.php or getsymbolsall.php?array=1
+get all symbols json format (or get in array format)
