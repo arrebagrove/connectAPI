@@ -40,11 +40,11 @@ function getSymbol($search = "GBP", $save = false){
 	try{
 		$str = '%'.$search.'%';
 
-		$m = date('i');
-		$h = date('H');
-		$d = date('d');
-		$month = date('m');
-		$y = date('Y');
+		$m = (int)date('i');
+		$h = (int)date('H');
+		$d = (int)date('d');
+		$month = (int)date('m');
+		$y = (int)date('Y');
 		$time = time();
 
 		if (count(explode(',', $search)) > 1) {
@@ -56,12 +56,12 @@ function getSymbol($search = "GBP", $save = false){
 			}
 			// mysql
 			$db = Conn();				
-			$res = $db->query("SELECT symbolName,lastAsk,lastBid,digits,description from symbolssmall WHERE hour=$h AND day = $d AND month = $month AND year = $y AND symbolName = '#'". $or);
+			$res = $db->query("SELECT symbolName,lastAsk,lastBid,digits,description,time,from_unixtime(time) as data from symbolssmall WHERE hour=$h AND day = $d AND month = $month AND year = $y AND symbolName = '#'". $or);
 			$x = $res->fetchAll();			
 		}else{
 			// mysql
 			$db = Conn();				
-			$res = $db->query("SELECT symbolName,lastAsk,lastBid,digits,description from symbolssmall WHERE hour=$h AND day = $d AND month = $month AND year = $y AND symbolName LIKE '$str'");
+			$res = $db->query("SELECT symbolName,lastAsk,lastBid,digits,description,time,from_unixtime(time) as data from symbolssmall WHERE hour=$h AND day = $d AND month = $month AND year = $y AND symbolName LIKE '$str'");
 			$x = $res->fetchAll();
 		}
 
