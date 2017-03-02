@@ -45,11 +45,11 @@ function addSymbols($json){
 		// echo rtrim(sprintf('%.20f', $z), '0');
 		foreach ($x['data'] as $v) {
 			// data
-			$m = date('i');
-			$h = date('H');
-			$d = date('d');
-			$month = date('m');
-			$y = date('Y');
+			$m = (int)date('i');
+			$h = (int)date('H');
+			$d = (int)date('d');
+			$month = (int)date('m');
+			$y = (int)date('Y');
 			$time = time();
 			// symbol
 			$sym = str_replace("#", "!", $v['symbolName']);
