@@ -1,18 +1,12 @@
 <?php
-$yesterday = 188.666;
-$today = 177.666;
+$yesterday = 0.7675;
+$today = 0.7596;
 
-// różnica kursowa w procentach dla wzrosu ile procent w plus, dla spadku ile procent trzeba odrobić
+// różnica kursowa w procentach
 kurs($today,$yesterday);
 
-// różnica kursowa w procentach dla wzrosu ile procent w plus, dla spadku ile procent trzeba odrobić
+// różnica kursowa w procentach
 function kurs($today,$yesterday){
-	if ($today>$yesterday) {
-		echo "+".$p = ($today/$yesterday)."%";		
-		// $yesterday * $p;		
-	}else{
-		echo "-".$p = ($yesterday/$today)."%";		
-		// echo $today * $p;		
-	}
+	return $delta = (($today - $yesterday) / $yesterday)*100;
 }
 ?>
