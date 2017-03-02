@@ -1,6 +1,5 @@
 <?php 
 /*
-s = SymbolName
 array = 0  - show json format
 array = 1  - show array format
 */
