@@ -12,5 +12,5 @@ get symbol chart data (json or array format)
 ### getsymbolsall.php or getsymbolsall.php?array=1
 get all symbols json format (or get in array format)
 
-### symbol.json (getsymbols.php save data to this file)
+### symbols.json (getsymbols.php save data to this file)
 file contain all symbols with current prices - refresh interval 2 seconds
