@@ -39,12 +39,12 @@ function getSymbolAll($array = 0){
 
 		// mysql
 		$db = Conn();							
-		$res = $db->query("SELECT symbolName,lastAsk,lastBid,digits,description,time,from_unixtime(time) as data from symbolssmall WHERE hour=$h AND day = $d AND month = $month AND year = $y ORDER BY id ASC");
+		$res = $db->query("SELECT symbolName,lastAsk,lastBid,digits,description,time,from_unixtime(time) as data from symbolssmall WHERE hour=$h AND day = $d AND month = $month AND year = $y ORDER BY symbolName DESC");
 		$x = $res->fetchAll(PDO::FETCH_ASSOC);
-		
-		// replace ! to # if you need
+
+		// replace ! to #
 		// foreach ($x as $k => $v) { $x[$k] = str_replace("!", "#", $v); }
-		
+
 		if ($array > 0) {
 			echo "<pre>";
 			print_r($x);
