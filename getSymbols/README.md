@@ -14,3 +14,6 @@ get all symbols json format (or get in array format)
 
 ### symbols.json (getsymbols.php save data to this file)
 file contain all symbols with current prices - refresh interval 2 seconds
+
+### symbols-hour.json (getsymbols.php save data to this file)
+file contain all symbols with previous hour prices - refresh interval 2 seconds
