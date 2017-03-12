@@ -25,20 +25,14 @@ namespace ChangeAccountDeposit
         static void Main(string[] args)
         {
             string accessToken = "TOKENSTRING";
-            string accountId = "123456";            
-            double initialDeposit = 100000000; // <== amount = deposit + 00 for 1000 USD,EUR,.. => 100000
 
-            // Change deposit single account
-            //string o = Deposit(accessToken,accountId,amount);
-            //Console.WriteLine(o);
-
-            // Change all account deposit
-            string acc = ChangeAccountsDeposit(accessToken, initialDeposit);
+            // Change all accounts deposit to 1M (USD)
+            string acc = ChangeAccountsDeposit(accessToken, 1000000);
             Console.WriteLine(acc);
             Console.ReadKey();
         }
 
-        public static string ChangeAccountsDeposit(string accessToken, double initialDeposit = 1000000)
+        public static string ChangeAccountsDeposit(string accessToken, double initialDepositUSD = 1000000)
             {
             string urlAccounts = "https://api.spotware.com/connect/tradingaccounts?access_token=" + accessToken;
             string cAccounts = "";
@@ -53,16 +47,16 @@ namespace ChangeAccountDeposit
                     Console.WriteLine(item.accountId + " " + item.balance);
                     double balance = Double.Parse((string)item.balance) / 100;
                     Console.WriteLine("Balance " + balance);
-                    if (balance > initialDeposit)
+                    if (balance > initialDepositUSD)
                         {
-                        double amount = Math.Round(balance - initialDeposit, 2);
+                        double amount = Math.Round(balance - initialDepositUSD, 2);
                         amount = amount * 100;
                         Withdraw(accessToken, (string)item.accountId, amount.ToString());
                         Console.WriteLine("Zmiejszam deposit " + amount);
                         }
-                    if (balance < initialDeposit)
+                    if (balance < initialDepositUSD)
                         {
-                        double amount = Math.Round(initialDeposit - balance, 2);
+                        double amount = Math.Round(initialDepositUSD - balance, 2);
                         amount = amount * 100;
                         Deposit(accessToken, (string)item.accountId, amount.ToString());
                         Console.WriteLine("Zwiększam deposit " + amount);
