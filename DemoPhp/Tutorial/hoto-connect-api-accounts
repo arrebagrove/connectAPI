@@ -1,0 +1,66 @@
+### Connect API Spotware (Allow access to accounts from another cTID)
+### Application cTID: connect@fxstar.eu
+
+1) Create redirect script ( https://fxstar.eu/fx/connect.php ) 
+   Download from https://github.com/fxstar/connectAPI/blob/master/DemoPhp/connect.php
+
+2) Create authorization page ( https://fxstar.eu/fx/authorize.php )
+   Download from https://github.com/fxstar/connectAPI/blob/master/DemoPhp/authorize.php
+
+3) Create refresh token page
+   Download from https://github.com/fxstar/connectAPI/blob/master/DemoPhp/refresh-token.php
+
+4) Connect accounts from our application cTID ( connect@fxstar.eu )
+   Now playground display two accounts (we can choose what we want allow)
+
+4a) we have got new token with to accounts connected to it (our old token works too but he has only one account)
+access_token => hzFhay9hf9XZ8w0C1RuNqrs5PYxbMbmcgNNP85iwCzQ
+expires_in => 2628000
+refresh_token => 5VhER-4B4Qi7aDlkzjyWi8WuxvZ1nKEjg0WR6LAQmSw
+token_type => bearer
+And all accounts data:
+{"data":[{"accountId":467809,"accountNumber":9998547,"live":false,"brokerName":"FxPro","brokerTitle":"FxPro","brokerCode":2,"depositCurrency":"USD","traderRegistrationTimestamp":1490715426020,"traderAccountType":"HEDGED","leverage":500,"leverageInCents":50000,"balance":100000,"deleted":false,"accountStatus":"ACTIVE","swapFree":false},{"accountId":468574,"accountNumber":9998866,"live":false,"brokerName":"FxPro","brokerTitle":"FxPro","brokerCode":2,"depositCurrency":"USD","traderRegistrationTimestamp":1490779849845,"traderAccountType":"HEDGED","leverage":500,"leverageInCents":50000,"balance":300000,"deleted":false,"accountStatus":"ACTIVE","swapFree":false}]}
+
+5) Create demo account for second cTID ( in my example connect1@fxstar.eu )
+Now we need login from second cTID to cTrader platform and link accounts (Demo or real) to cTID
+
+6) Connect accounts from another cTID ( connect1@fxstar.eu ) 
+   authorize.php - file redirect user to playground, user need login and then can connect accounts to our applicaton 
+
+If ok we got token from our connect.php script (saved in file, add write permisions to folder with connect.php file)
+If ok we got token in file, lets test it!
+Array ( [accessToken] => vtVJJASXi7bq5ZgOP_878Av8P7myrfwAbMde4I5_ajw [tokenType] => bearer [expiresIn] => 2628000 [refreshToken] => TCzwxEH7d3M45CNhY4c2d4xQSQx8Mn14MRQOEW_qewA [errorCode] => [access_token] => vtVJJASXi7bq5ZgOP_878Av8P7myrfwAbMde4I5_ajw [refresh_token] => TCzwxEH7d3M45CNhY4c2d4xQSQx8Mn14MRQOEW_qewA [expires_in] => 2628000 ) 
+
+ANd Now we have got access to user account (in my example connect1@fxstar.eu)
+{"data":[{"accountId":468581,"accountNumber":9998872,"live":false,"brokerName":"FxPro","brokerTitle":"FxPro","brokerCode":2,"depositCurrency":"USD","traderRegistrationTimestamp":1490780299358,"traderAccountType":"HEDGED","leverage":500,"leverageInCents":50000,"balance":10000000,"deleted":false,"accountStatus":"ACTIVE","swapFree":false},{"accountId":468577,"accountNumber":9998871,"live":false,"brokerName":"FxPro","brokerTitle":"FxPro","brokerCode":2,"depositCurrency":"USD","traderRegistrationTimestamp":1490780268918,"traderAccountType":"HEDGED","leverage":500,"leverageInCents":50000,"balance":1000000,"deleted":false,"accountStatus":"ACTIVE","swapFree":false}]}
+
+7) Get accounts connected to our token
+https://api.spotware.com/connect/tradingaccounts?access_token=SdVYws4iBY4r3HQmaGg8J-CYNW7g2XeUzEy56H2QtUM
+https://api.spotware.com/connect/tradingaccounts?access_token=hzFhay9hf9XZ8w0C1RuNqrs5PYxbMbmcgNNP85iwCzQ
+// connect1@fxstar.eu token
+https://api.spotware.com/connect/tradingaccounts?access_token=vtVJJASXi7bq5ZgOP_878Av8P7myrfwAbMde4I5_ajw
+
+8) Get open positions, {id} - account id - from above url return
+https://api.spotware.com/connect/tradingaccounts/467809/positions?access_token=SdVYws4iBY4r3HQmaGg8J-CYNW7g2XeUzEy56H2QtUM
+
+// get open positions from user account
+https://api.spotware.com/connect/tradingaccounts/468581/positions?access_token=vtVJJASXi7bq5ZgOP_878Av8P7myrfwAbMde4I5_ajw
+
+And positions from user account (468581):
+{"data":[{"positionId":62179194,"entryTimestamp":1490780959938,"utcLastUpdateTimestamp":1490780959938,"symbolName":"#US30","tradeSide":"SELL","entryPrice":20678.0,"volume":1000,"stopLoss":null,"takeProfit":null,"profit":-4000,"profitInPips":-4.0,"commission":0,"marginRate":20678.0,"swap":0,"currentPrice":20682.0,"comment":null,"channel":"cTrader","label":null},{"positionId":62179189,"entryTimestamp":1490780935935,"utcLastUpdateTimestamp":1490780935935,"symbolName":"WTI","tradeSide":"BUY","entryPrice":48.92,"volume":10000,"stopLoss":null,"takeProfit":null,"profit":-700,"profitInPips":-7.0,"commission":0,"marginRate":48.92,"swap":0,"currentPrice":48.85,"comment":null,"channel":"cTrader","label":null},{"positionId":62179185,"entryTimestamp":1490780915334,"utcLastUpdateTimestamp":1490780915334,"symbolName":"EURUSD","tradeSide":"BUY","entryPrice":1.07907,"volume":10000000,"stopLoss":null,"takeProfit":null,"profit":-499,"profitInPips":-0.5,"commission":-486,"marginRate":1.07907,"swap":0,"currentPrice":1.07902,"comment":null,"channel":"cTrader","label":null}]}
+
+9) Now we refresh some token (for example user token):
+open refresh-token.php
+refresh token was send with token we need it
+[refreshToken] => TCzwxEH7d3M45CNhY4c2d4xQSQx8Mn14MRQOEW_qewA
+
+10) And new token after refresh our refresh-token.php
+New token:
+Array ( [accessToken] => niqnSL08LhcIZcTlPJktRa9gVdp406y3sZEsTTyq1ic [tokenType] => bearer [expiresIn] => 2628000 [refreshToken] => YkE22XPQAcZvf2Z2OgiHdvwzct1glvoGWuQC4y3hT6w [errorCode] => [access_token] => niqnSL08LhcIZcTlPJktRa9gVdp406y3sZEsTTyq1ic [refresh_token] => YkE22XPQAcZvf2Z2OgiHdvwzct1glvoGWuQC4y3hT6w [expires_in] => 2628000 ) 
+
+11) Now we can connect from new token to user account 
+https://api.spotware.com/connect/tradingaccounts/468581/positions?access_token=niqnSL08LhcIZcTlPJktRa9gVdp406y3sZEsTTyq1ic
+
+12) its ok works we can only save token to mysql database for example.
+
+13) Bye. Thanks for watching.
