@@ -1,0 +1,47 @@
+### Connect API Spotware (Create cTID and demo account)
+
+1) Download cTrader from fxpro.co.uk
+2) Create cTID
+3) Create cTrader Demo account and link with cTID
+4) Create connect application
+4a) Accounts - allow only connect and get data from server
+4b) Trading - allow connect get data and open/close positions !
+
+5) Account url: 
+https://connect.spotware.com/apps/auth?client_id=235_oC5GEbxWgmAAhcYiWzxmw1eu8l73phcKcXeaEKflqMYqwYqHcB&redirect_uri=https%3A%2F%2Fconnect.spotware.com%2Fapps%2F235%2Fplayground&scope=accounts
+
+6) Trading url:
+https://connect.spotware.com/apps/auth?client_id=235_oC5GEbxWgmAAhcYiWzxmw1eu8l73phcKcXeaEKflqMYqwYqHcB&redirect_uri=https%3A%2F%2Fconnect.spotware.com%2Fapps%2F235%2Fplayground&scope=trading
+
+7) My tokens: 
+access_token => SdVYws4iBY4r3HQmaGg8J-CYNW7g2XeUzEy56H2QtUM
+expires_in => 2628000
+refresh_token => CiLJP3uwpdLhur4jxVR8DXsW5aWemCi3PV8jmfqfzFs
+token_type => bearer
+
+8) Get accounts connected to our token
+https://api.spotware.com/connect/tradingaccounts?access_token=SdVYws4iBY4r3HQmaGg8J-CYNW7g2XeUzEy56H2QtUM
+
+9) Accounts details:
+{"data":[{"accountId":467809,"accountNumber":9998547,"live":false,"brokerName":"FxPro","brokerTitle":"FxPro","brokerCode":2,"depositCurrency":"USD","traderRegistrationTimestamp":1490715426020,"traderAccountType":"HEDGED","leverage":500,"leverageInCents":50000,"balance":100000,"deleted":false,"accountStatus":"ACTIVE","swapFree":false}]}
+
+10) get open positions {id} account id 
+https://api.spotware.com/connect/tradingaccounts/467809/positions?access_token=SdVYws4iBY4r3HQmaGg8J-CYNW7g2XeUzEy56H2QtUM
+10a) get account symbols
+https://api.spotware.com/connect/tradingaccounts/467809/symbols?access_token=SdVYws4iBY4r3HQmaGg8J-CYNW7g2XeUzEy56H2QtUM
+
+11) Open positions from account
+{"data":[{"positionId":62120865,"entryTimestamp":1490716802975,"utcLastUpdateTimestamp":1490716802975,"symbolName":"GBPJPY","tradeSide":"SELL","entryPrice":138.232,"volume":2000000,"stopLoss":null,"takeProfit":null,"profit":-36,"profitInPips":-0.2,"commission":-113,"marginRate":1.25025,"swap":0,"currentPrice":138.234,"comment":null,"channel":"cTrader","label":null},{"positionId":62120824,"entryTimestamp":1490716768472,"utcLastUpdateTimestamp":1490716768472,"symbolName":"EURUSD","tradeSide":"SELL","entryPrice":1.08502,"volume":1000000,"stopLoss":null,"takeProfit":null,"profit":-149,"profitInPips":-1.5,"commission":-49,"marginRate":1.08502,"swap":0,"currentPrice":1.08517,"comment":null,"channel":"cTrader","label":null}]}
+
+Connect login / create application 
+https://connect.spotware.com/
+
+ConnectApi help files
+https://connect.spotware.com/docs/api-reference
+
+12) Bye thansk for watch.....
+
+Ps. request limit 2s you can send request in 2seconds interval.
+
+!!!!!! If you create new account you need refresh token old token dont know new created accounts !!!!!!
+https://connect.spotware.com/
