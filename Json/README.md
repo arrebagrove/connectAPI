@@ -1,9 +1,9 @@
 ## Install from visual studio Tools > NuGet Package manager > package Manager Console
 PM> Install-Package Newtonsoft.Json 
 
-dynamic results = JsonConvert.DeserializeObject<dynamic>(json); 
+dynamic results = JsonConvert.DeserializeObject\<dynamic\>(json); 
 
-or ClassName results = JsonConvert.DeserializeObject<ClassName>(json);
+or ClassName results = JsonConvert.DeserializeObject\<ClassName\>(json);
 
 var id = results.Id;
 
